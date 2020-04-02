@@ -11,8 +11,8 @@ if ENV:
    STRING_SESSION = os.environ.get('STRING_SESSION', None)
    ACCEPTORS = set(int(x) for x in os.environ.get("ACCEPTORS", "").split())
    ENFORCERS = set(int(x) for x in os.environ.get("ENFORCERS", "").split())
-   Sibyl_logs = os.environ.get('Sibyl_logs', None)
-   Sibyl_approved_logs = os.environ.get('Sibyl_Approved_Logs', None)
+   Sibyl_logs = int(os.environ.get('Sibyl_logs', None))
+   Sibyl_approved_logs = int(os.environ.get('Sibyl_Approved_Logs', None))
 else:
  import Sibyl_System.config
  API_ID_KEY = config.api_id
@@ -22,5 +22,8 @@ else:
  ENFORCERS = config.enforcers
  Sibyl_logs = config.Sibyl_logs
  Sibyl_approved_logs = config.Sibyl_approved_logs
+
+#so they can gban too
+ENFORCERS += ACCEPTORS
 
 Sibyl = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
