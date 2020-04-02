@@ -59,11 +59,14 @@ async def approve(event):
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]proof'))
 async def proof(event):
+  msg = await Sibyl.send_message(event.chat_id, 'Trying to get Proof owo >>>>>') 
   if event.from_id in ACCEPTORS:
      try: 
        proof_id = int(event.text.split(' ', 1)[1])
      except:
+        await msg.edit('>>>>> Proof id is not valid') 
         return
+     await msg.edit('Fetching msg details from proof id <<<<<<<') 
      proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
      message = re.search('Message: (.*)', proof.message).group(1)
      if message == "":
@@ -72,7 +75,7 @@ async def proof(event):
             if proof.media:
                   proof.forward_to(event.chat_id)
             else:
-              await Sibyl.send_message(event.chat_id, f"Error getting proof from id {proof_id}")
+              await msg.edit(f"Error getting proof from id {proof_id}")
      else:
-        await Sibyl.send_message(event.chat_id, f"**Proof from ID**[`{proof_id}`]: \n**Message**: `{message}`") 
+        await msg.edit(f"**Proof from ID**[`{proof_id}`]: \n**Message**: `{message}`") 
             
