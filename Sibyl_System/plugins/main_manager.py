@@ -68,8 +68,9 @@ async def proof(event):
         return
      await msg.edit('Fetching msg details from proof id <<<<<<<') 
      proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
-     message = re.search('Message: (.*)', proof.message).group(1)
-     if message == "":
+     try:
+         message = re.search('Message: (.*)', proof.message).group(1)
+     except:
             proof_id -= 1
             proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
             if proof.media:
