@@ -55,7 +55,7 @@ async def approve(event):
                 enforcer = id2
                 scam = id1
             await Sibyl.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=scam, approved_by= f"[{sender.first_name}](tg://user?id={sender.id})"))
-            await Sibyl.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #replied.id") 
+            await Sibyl.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #{replied.id}") 
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]proof'))
 async def proof(event):
