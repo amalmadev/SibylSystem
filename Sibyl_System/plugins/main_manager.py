@@ -74,5 +74,5 @@ async def proof(event):
             else:
               await Sibyl.send_message(event.chat_id, f"Error getting proof from id {proof_id}")
      else:
-        await Sibyl.send_message(event.chat_id, f"*Proof from ID*[`{proof_id}`]: \n**Message**: `{message}`") 
+        await Sibyl.send_message(event.chat_id, f"**Proof from ID**[`{proof_id}`]: \n**Message**: `{message}`") 
             
