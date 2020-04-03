@@ -1,10 +1,11 @@
 on_string = "Sibyl-System Is on, We should die."
 help_string = """
 Here is the for Sibyl-System (All the cmd can be used with ?,!,.)
-scan - send request for gban
-status - check if bot is online
-help - Peace. 
-approve - Approve gban request
+**scan** - send request for gban
+**status** - check if bot is online
+**help** - Peace. 
+**approve** - Approve gban request
+**proof** - get proof from id 
 """
 scan_request_string = """
 $SCAN
