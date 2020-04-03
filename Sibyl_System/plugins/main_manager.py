@@ -73,10 +73,14 @@ async def proof(event):
      except:
             proof_id -= 1
             proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
-            if proof.media:
-                  proof.forward_to(event.chat_id)
-            else:
-              await msg.edit(f"Error getting proof from id {proof_id}")
-     else:
-        await msg.edit(f"**Proof from ID**[`{proof_id}`]: \n**User id**: {proof.id}\n**Message**: `{message}`") 
+            if proof:
+             if proof.media:
+                   proof.forward_to(event.chat_id)
+             else:
+                   await msg.edit(f"Error getting proof from id {proof_id}")
+                   return
+            else : 
+                  await msg.edit(f" Failed to get proof, Is the proof id valid?")
+                  return
+     await msg.edit(f"*>>>>>*Proof from ID**[`{proof_id}`]: \n**User id**: {proof.id}\n**Message**: `{message}`") 
             
