@@ -82,5 +82,5 @@ async def proof(event):
             else : 
                   await msg.edit(f" Failed to get proof, Is the proof id valid?")
                   return
-     await msg.edit(f"*>>>>>*Proof from ID**[`{proof_id}`]: \n**User id**: {proof.id}\n**Message**: `{message}`") 
+     await msg.edit(f"**Proof from ID**[`{proof_id}`]: \n**User id**: {proof.from_id}\n**Message**: `{message}`") 
             
