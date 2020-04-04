@@ -68,6 +68,7 @@ async def proof(event):
         return
      await msg.edit('Fetching msg details from proof id <<<<<<<') 
      proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
+     reason = re.search(r"Reason: (.*)", proof.message).group(1)
      try:
          message = re.search('Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
@@ -83,7 +84,7 @@ async def proof(event):
             else : 
                   await msg.edit(f" Failed to get proof, Is the proof id valid?")
                   return
-     await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Message**: `{message}`") 
+     await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Reason**: {reason}\n**Message**: `{message}`") 
             
 help_plus ="""
 Here is the help for **Main**:
