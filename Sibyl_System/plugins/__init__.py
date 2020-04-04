@@ -1,1 +1,1 @@
-to_load = ["main_manager"]
+to_load = ["main_manager", "whois"]
