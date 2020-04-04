@@ -26,7 +26,7 @@ async def help(event):
          return
 
 from Sibyl_System.plugins import to_load
-
+import Sibyl_System.plugins.whois
 for load in to_load: importlib.import_module("Sibyl_System.plugins." + load)
 
 Sibyl.start()
