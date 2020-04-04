@@ -9,9 +9,9 @@ Here is the for Sibyl-System (All the cmd can be used with ?,!,. and /)
 """
 scan_request_string = """
 $SCAN
-{enforcer} is requesting Cymatic Scan for {spammer}
-Reason: {reason}
-Message: {message} 
+{enforcer} is requesting a Cymatic Scan for {spammer}
+Scan Reason: {reason}
+Target Message: {message} 
 """
 
 scan_approved_string = """
