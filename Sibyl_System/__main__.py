@@ -35,7 +35,7 @@ async def status(event):
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]help'))
 async def help(event):
     if event.from_id in ACCEPTORS:
-         help_for = event.pattern_match.group(1).lower()
+         help_for = event.text.split(" ", 1)[1].lower()
          if help_for in HELP:
               await Sibyl.send_message(event.chat_id, HELP[help_for])
          else:
