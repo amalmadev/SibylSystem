@@ -5,7 +5,7 @@ from Sibyl_System import Sibyl
 from telethon import events
 import asyncio
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]whois'))
+@Sibyl.on(events.NewMessage(pattern=r'[\?!/]whois'))
 async def whois(event):
  if event.from_id in ACCEPTORS:
   try:
