@@ -9,8 +9,8 @@ import importlib
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
-
-
+from Sibyl_System.plugins.whois import help_plus
+from Sibyl_System.plugins.main_manager import help_plus as help_main
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]status'))
 async def status(event):
     if event.from_id in ACCEPTORS:
@@ -21,7 +21,7 @@ async def status(event):
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!][Ss]ibyl help'))
 async def help(event):
     if event.from_id in ACCEPTORS:
-         await Sibyl.send_message(event.chat_id, help_string)
+         await Sibyl.send_message(event.chat_id, help_plus + "\n" + help_main)
     else:
          return
 
