@@ -11,13 +11,19 @@ logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s'
                     level=logging.WARNING)
 
 from Sibyl_System.plugins import to_load
-modules = []
-help = []
-import Sibyl_System.plugins.whois
+
+HELP = {}
+IMPORTED = {}
 for load in to_load: 
-    modules.append(load)
-    importlib.import_module("Sibyl_System.plugins." + load)
-    help.append(modules[load].help_plus) 
+    imported = importlib.import_module("Sibyl_System.plugins." + load)
+    if not hasattr(imported, "__plugin_name__"):
+        imported.__plugin_name__ = imported.__name__
+
+    if not imported.__plugin_name__.lower() in IMPORTED:
+        IMPORTED[imported.__plugin_name__.lower()] = imported
+
+    if hasattr(imported, "help_plus") and imported.help_plus:
+        HELP[imported.__plugin_name__.lower()] = imported 
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]status'))
 async def status(event):
@@ -29,7 +35,11 @@ async def status(event):
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]help'))
 async def help(event):
     if event.from_id in ACCEPTORS:
-         await Sibyl.send_message(event.chat_id, help_plus + "\n" + help_main)
+         help_for = event.pattern_match.group(1).lower()
+         if help_for in HELP:
+              await Sibyl.send_message(event.chat_id, HELP[help_for])
+         else:
+              return 
     else:
          return
 
