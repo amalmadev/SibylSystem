@@ -5,7 +5,7 @@ from telethon import events
 import re
 import asyncio
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]scan'))
+@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
           replied = await event.get_reply_message() 
