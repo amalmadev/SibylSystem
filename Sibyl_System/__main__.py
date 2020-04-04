@@ -37,7 +37,7 @@ async def help(event):
     if event.from_id in ACCEPTORS:
          help_for = event.text.split(" ", 1)[1].lower()
          if help_for in HELP:
-              await Sibyl.send_message(event.chat_id, HELP[help_for])
+              await Sibyl.send_message(event.chat_id, HELP[help_for].help_plus)
          else:
               return 
     else:
