@@ -15,7 +15,7 @@ modules = []
 help = []
 import Sibyl_System.plugins.whois
 for load in to_load: 
-    module.append(load)
+    modules.append(load)
     importlib.import_module("Sibyl_System.plugins." + load)
     help.append(modules[load].help_plus) 
 
