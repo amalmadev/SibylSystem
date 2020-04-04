@@ -19,4 +19,4 @@ async def whois(event):
   try: to_get = int(to_get) 
   except: pass 
   data = await Sibyl(GetFullUserRequest(to_get))
-  await Sibyl.send_message(event.chat_id, f"Name: `{data.user.first_name}`\nUser ID: `{data.user.id}`\nAbout: {data.user.about}")
+  await Sibyl.send_message(event.chat_id, f"Name: `{data.user.first_name}`\nUser ID: `{data.user.id}`\nAbout: {data.about}")
