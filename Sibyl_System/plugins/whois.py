@@ -7,13 +7,15 @@ import asyncio
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]whois'))
 async def whois(event):
- if event.from_id in APPROVERS:
+ if event.from_id in ACCEPTORS:
   try:
    to_get = event.pattern_match.group(1)
+   try : to_get = int(to_get) 
+   except: pass
   except:
     if event.reply:
          replied = await event.get_reply_message()
-         to_get = replied.sender.id
+         to_get = int(replied.sender.id)
     else:
          return
   data = Sibyl(GetFullUserRequest(to_get))
