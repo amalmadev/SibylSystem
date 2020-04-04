@@ -87,9 +87,10 @@ async def proof(event):
             
 help_plus ="""
 Here is the help for **Main**:
-scan - Reply to a message with reason to send a request for gbans
-approve - Approve a scan request
-proof - Get message from proof id which is at the end of gban msg 
+
+`scan` - Reply to a message with reason to send a request for gbans
+`approve` - Approve a scan request
+`proof` - Get message from proof id which is at the end of gban msg 
 """
 
 __plugin_name__ = "Main" 
