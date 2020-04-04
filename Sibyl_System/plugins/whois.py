@@ -23,5 +23,6 @@ async def whois(event):
 
 
 help_plus =""" Here is Help for whois - 
-`whois' - get data of the user
+`whois` - get data of the user
 """
+__plugin_name__ = "whois"
