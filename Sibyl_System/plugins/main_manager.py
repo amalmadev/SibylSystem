@@ -71,6 +71,7 @@ async def proof(event):
      try:
          message = re.search('Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
+       if message or message == "":
             proof_id -= 1
             proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
             if proof:
