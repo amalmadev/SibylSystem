@@ -15,4 +15,4 @@ async def addenf(event):
            await System.send_message(event.chat_id, 'That person is already Enforcer!')
            return
      ENFORCERS.append(id)
-     await System.send_message(event.chat_id, 'Done!) 
+     await System.send_message(event.chat_id, 'Done!') 
