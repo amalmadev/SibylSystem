@@ -53,10 +53,13 @@ Sibyl is under active development and some future plans include
 ##### Why that? 
 
 >Why use regex for so proof and approve? 
-How else would I get reason, message etc? ( I know about split but that'd make the code hard for me to read) 
+- How else would I get reason, message etc? ( I know about split but that'd make the code hard for me to read) 
 
 >Why such noob code?
-Cuz I'm a noob?
+- Cuz I'm a noob?
 
 >Why not classes for config?
-Because I don't want it to be hard for newbies (to python (or those who don't know it)) to setup the bot
+- Because I don't want it to be hard for newbies (to python (or those who don't know it)) to setup the bot
+
+>Why not getting list of all module instead of manually putting module in to_load?
+- I don't want people from uniborg or ftg or other userbots to put there plugins (those weird animation ones or useless ones) in Sibyl System 
