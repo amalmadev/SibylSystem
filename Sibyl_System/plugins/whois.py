@@ -1,5 +1,5 @@
 from telethon.tl.functions.users import GetFullUserRequest
-from Sibyl_System import Sibyl_logs, ENFORCERS, ACCEPTORS, Sibyl_approved_logs
+from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs
 from Sibyl_System.strings import scan_request_string, scan_approved_string
 from Sibyl_System import Sibyl
 from telethon import events
@@ -7,7 +7,7 @@ import asyncio
 
 @Sibyl.on(events.NewMessage(pattern=r'[\?!/]whois'))
 async def whois(event):
- if event.from_id in ACCEPTORS:
+ if event.from_id in SIBYL:
   try:
    to_get = event.pattern_match.group(1)
   except:

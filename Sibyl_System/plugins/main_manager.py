@@ -1,4 +1,4 @@
-from Sibyl_System import Sibyl_logs, ENFORCERS, ACCEPTORS, Sibyl_approved_logs
+from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs
 from Sibyl_System.strings import scan_request_string, scan_approved_string
 from Sibyl_System import Sibyl
 from telethon import events
@@ -11,14 +11,14 @@ async def scan(event):
           replied = await event.get_reply_message() 
           if replied.fwd_from: 
              reply = replied.fwd_from
-             if reply.from_id in ENFORCERS or reply.from_id in ACCEPTORS:
+             if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
                    return
              if reply.from_name: 
                  sender = f"[{reply.from_name}](tg://user?id={reply.from_id})"
              else: 
                  sender = f"[{reply.from_id}](tg://user?id={reply.from_id})"
           else: 
-                 if replied.sender.id in ACCEPTORS or replied.sender.id in ENFORCERS:
+                 if replied.sender.id in SIBYL or replied.sender.id in ENFORCERS:
                           return
                  sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
           executer = await event.get_sender()
@@ -34,7 +34,7 @@ async def scan(event):
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
 async def approve(event):
- if event.from_id in ACCEPTORS and event.reply:
+ if event.from_id in SIBYL and event.reply:
    replied = await event.get_reply_message()
    match = re.match('$SCAN', replied.text)
    if match:
@@ -50,7 +50,7 @@ async def approve(event):
             else:
                id1 = list[0]
                id2 = re.findall('(\d+)', replied.text)[1]
-            if id1 in ENFORCERS or ACCEPTORS: 
+            if id1 in ENFORCERS or SIBYL: 
                 enforcer = id1
                 scam = id2
             else:
@@ -61,7 +61,7 @@ async def approve(event):
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
 async def proof(event): 
-  if event.from_id in ACCEPTORS:
+  if event.from_id in SIBYL:
      msg = await Sibyl.send_message(event.chat_id, 'Trying to get Proof owo >>>>>')
      try: 
        proof_id = int(event.text.split(' ', 1)[1])
@@ -97,7 +97,7 @@ Suspect is not a target for enforcement action. The trigger of Dominator will be
             
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
 async def proof(event):
-  if event.from_id in ACCEPTORS and event.reply:
+  if event.from_id in SIBYL and event.reply:
    match = re.match('$SCAN', event.text) 
    if match:
       replied = await event.get_reply_message()

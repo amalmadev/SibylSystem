@@ -1,5 +1,5 @@
 from Sibyl_System.strings import help_string
-from Sibyl_System import ACCEPTORS, Sibyl_logs, API_ID_KEY, API_HASH_KEY, STRING_SESSION, Sibyl
+from Sibyl_System import SIBYL, Sibyl_logs, API_ID_KEY, API_HASH_KEY, STRING_SESSION, Sibyl
 from Sibyl_System.strings import on_string
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
@@ -27,14 +27,14 @@ for load in to_load:
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]status'))
 async def status(event):
-    if event.from_id in ACCEPTORS:
+    if event.from_id in SIBYL:
          await Sibyl.send_message(event.chat_id, on_string)
     else:
          return
 
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!]help'))
 async def help(event):
-    if event.from_id in ACCEPTORS:
+    if event.from_id in SIBYL:
          help_for = event.text.split(" ", 1)[1].lower()
          if help_for in HELP:
               await Sibyl.send_message(event.chat_id, HELP[help_for].help_plus)
