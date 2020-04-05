@@ -14,7 +14,7 @@ scan_approved_string = """
 **Enforcer** = {enforcer}
 **Target User** = {scam}
 **Approved By** = {approved_by}
-**Crome Coefficient**= Over 300
+**Crime Coefficient**= over 300
 """
 # https://psychopass.fandom.com/wiki/Crime_Coefficient_(Index)
 # https://psychopass.fandom.com/wiki/The_Dominator
