@@ -1,4 +1,4 @@
-from Sibyl_System.strings import help_string
+
 from Sibyl_System import SIBYL, Sibyl_logs, API_ID_KEY, API_HASH_KEY, STRING_SESSION, System
 from Sibyl_System.strings import on_string
 from telethon import TelegramClient, events
