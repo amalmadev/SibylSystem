@@ -8,7 +8,7 @@ async def addenf(event):
   if event.from_id in SIBYL:
      if event.reply:
         replied = await event.get_reply_message()
-        id = reply.from_id
+        id = replied.sender.id
      else:
         id = event.text.split(" ", 2)[1]
      if id in ENFORCERS:
