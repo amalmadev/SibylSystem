@@ -16,7 +16,7 @@ async def scan(event):
              if reply.from_name: 
                  sender = f"[{reply.from_name}](tg://user?id={reply.from_id})"
              else: 
-                 sender = f"{reply.from_id}"
+                 sender = f"[{reply.from_id}](tg://user?id={reply.from_id})"
           else: 
                  if replied.sender.id in ACCEPTORS or replied.sender.id in ENFORCERS:
                           return
@@ -35,7 +35,9 @@ async def scan(event):
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
 async def approve(event):
  if event.from_id in ACCEPTORS and event.reply:
-     replied = await event.get_reply_message()
+   replied = await event.get_reply_message()
+   match = re.match('$SCAN', replied.text)
+   if match:
      reply = replied.sender.id
      me = await Sibyl.get_me()
      sender = await event.get_sender()
@@ -96,9 +98,11 @@ Suspect is not a target for enforcement action. The trigger of Dominator will be
 @Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
 async def proof(event):
   if event.from_id in ACCEPTORS and event.reply:
+   match = re.match('$SCAN', event.text) 
+   if match:
       replied = await event.get_reply_message()
       id = replied.id
-      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://thumbs.gfycat.com/WeeklyUnhealthyAmericanblackvulture-size_restricted.gif", force_document= True)
+      await Sibyl.edit_message(Sibyl_logs, id, reject_string)
 
 help_plus ="""
 Here is the help for **Main**:
