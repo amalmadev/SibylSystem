@@ -49,3 +49,14 @@ Sibyl is under active development and some future plans include
 - The Sibyl System's Crime Coefficient is revealed to be over 300, even though it consists of only criminally asymptomatic brains. The brains contributing to this Coefficient are destroyed, lowering the number to zero.
 
 - In case of emergency and/or if the System thinks that it is in danger, it can falsify the judgement of the Dominator, in order to suppress the threat.
+
+##### Why that? 
+
+>Why use regex for so proof and approve? 
+How else would I get reason, message etc? ( I know about split but that'd make the code hard for me to read) 
+
+>Why such noob code?
+Cuz I'm a noob?
+
+>Why not classes for config?
+Because I don't want it to be hard for newbies (to python (or those who don't know it)) to setup the bot
