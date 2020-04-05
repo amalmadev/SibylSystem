@@ -7,7 +7,7 @@ import asyncio
 
 @System.on(events.NewMessage(pattern=r'[\?!/]whois'))
 async def whois(event):
- if event.from_id in ENFORCERS:
+ if event.from_id in SIBYL:
   try:
    to_get = event.pattern_match.group(1)
   except:
