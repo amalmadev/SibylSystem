@@ -23,5 +23,6 @@ else:
  Sibyl_logs = config.Sibyl_logs
  Sibyl_approved_logs = config.Sibyl_approved_logs
 
+ENFORCERS.extend(ACCEPTORS)
 
 Sibyl = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
