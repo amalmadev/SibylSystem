@@ -1,12 +1,7 @@
 on_string = "Sibyl-System is now active!"
-help_string = """
-Here is the for Sibyl-System (All the cmd can be used with ?,!,. and /)
-**scan** - Forces a Cymatic scan on the user.
-**status** - Check connection to Sibyl System.
-**approve** - Approves Sibyl Dominator request.
-**proof** - Pulls past scans data from an ID.
-**help** - Lists Information to use Sibyl.
-"""
+
+#Make sure not to change this too much 
+#If you still wanna change it change the regex too
 scan_request_string = """
 $SCAN
 {enforcer} is requesting a Cymatic Scan for {spammer}
