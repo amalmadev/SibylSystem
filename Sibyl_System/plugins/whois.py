@@ -7,7 +7,7 @@ import asyncio
 
 @System.on(events.NewMessage(pattern=r'[\?!/]whois'))
 async def whois(event):
- if event.from_id in SIBYL:
+ if event.from_id in ENFORCERS:
   try:
    to_get = event.pattern_match.group(1)
   except:
@@ -22,7 +22,7 @@ async def whois(event):
   await System.send_message(event.chat_id, f"Perma Link: [{data.user.first_name}](tg://user?id={data.user.id})\nUser ID: `{data.user.id}`\nAbout: {data.about}")
 
 
-help_plus =""" Here is Help for *Whois* - 
+help_plus =""" Here is Help for **Whois** - 
 `whois` - get data of the user
 """
 __plugin_name__ = "whois"
