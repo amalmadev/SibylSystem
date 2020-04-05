@@ -98,7 +98,7 @@ async def proof(event):
   if event.from_id in ACCEPTORS and event.reply:
       replied = await event.get_reply_message()
       id = replied.id
-      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://thumbs.gfycat.com/WeeklyUnhealthyAmericanblackvulture-size_restricted.gif")
+      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://thumbs.gfycat.com/WeeklyUnhealthyAmericanblackvulture-size_restricted.gif", force_document= True)
 
 help_plus ="""
 Here is the help for **Main**:
