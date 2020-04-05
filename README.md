@@ -10,19 +10,25 @@ Based on the popular anime series "Psycho Pass", Sibyl is designed to work in a 
 
 > To create and manage all Dominators and scanner systems in-country and to monitor the behavior of MWPSB personnel
 
-###Location
+------------
+
+### Location
 
 Sibyl can be seen around telegram judging people and chats and logging the information at [@SibylSystem](http://t.me/SibylSystem "@SibylSystem")
 The base of operations of Sibyl are Beneath the NONA Tower and are only accessible by select personnel. 
 
-###Commands list
+------------
+
+### Commands list
 Users can access the following commands, usage is limited based on enforcer privileges.
 
     *scan *- Reply to a message with reason to send a request for gbans
     *approve* - Approve a scan request
     *proof* - Get message from proof id which is at the end of gban msg
 
-####Development and planning
+------------
+
+#### Development and planning
 
 Sibyl is under active development and some future plans include 
 - Gif responses
@@ -30,6 +36,7 @@ Sibyl is under active development and some future plans include
 - Improved logging, access and replies strings 
 - Anything else we come up with as this project goes on.
 
+------------
 
 ##### Trivia
 - The use of the Sibyl System to determine latent criminals with the help of Crime Coefficients is introduced at some point between 2090 and 2100.
