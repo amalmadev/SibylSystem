@@ -46,4 +46,4 @@ async def help(event):
 
 
 System.start()
-Systsm.run_until_disconnected()
+System.run_until_disconnected()
