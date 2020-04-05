@@ -32,7 +32,7 @@ async def scan(event):
     else:
      return
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]approve'))
+@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
 async def approve(event):
  if event.from_id in ACCEPTORS and event.reply:
      replied = await event.get_reply_message()
@@ -57,10 +57,10 @@ async def approve(event):
             await Sibyl.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=scam, approved_by= f"[{sender.first_name}](tg://user?id={sender.id})"))
             await Sibyl.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #{replied.id}") 
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]proof'))
-async def proof(event):
-  msg = await Sibyl.send_message(event.chat_id, 'Trying to get Proof owo >>>>>') 
+@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
+async def proof(event): 
   if event.from_id in ACCEPTORS:
+     msg = await Sibyl.send_message(event.chat_id, 'Trying to get Proof owo >>>>>')
      try: 
        proof_id = int(event.text.split(' ', 1)[1])
      except:
@@ -85,7 +85,20 @@ async def proof(event):
                   await msg.edit(f" Failed to get proof, Is the proof id valid?")
                   return
      await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Reason**: {reason}\n**Message**: `{message}`") 
+
+reject_string ="""
+$REJECTED
+**Crime Coefficient**: `Under 100`
+Suspect is not a target for enforcement action. The trigger of Dominator will be locked.
+"""
             
+@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
+async def proof(event):
+  if event.from_id in ACCEPTORS and event.reply:
+      replied = await event.get_reply_message()
+      id = replied.id
+      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://anonymousfiles.io/OZn3vIfH/")
+
 help_plus ="""
 Here is the help for **Main**:
 
