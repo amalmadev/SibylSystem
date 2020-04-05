@@ -89,6 +89,7 @@ async def proof(event):
 reject_string ="""
 $REJECTED
 **Crime Coefficient**: `Under 100`
+
 Suspect is not a target for enforcement action. The trigger of Dominator will be locked.
 """
             
@@ -97,7 +98,7 @@ async def proof(event):
   if event.from_id in ACCEPTORS and event.reply:
       replied = await event.get_reply_message()
       id = replied.id
-      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://gfycat.com/ifr/WeeklyUnhealthyAmericanblackvulture", force_document = True)
+      await Sibyl.edit_message(Sibyl_logs, id, reject_string, file = "https://thumbs.gfycat.com/WeeklyUnhealthyAmericanblackvulture-size_restricted.gif")
 
 help_plus ="""
 Here is the help for **Main**:
