@@ -1,11 +1,11 @@
 from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs
 from Sibyl_System.strings import scan_request_string, scan_approved_string
-from Sibyl_System import Sibyl
+from Sibyl_System import System
 from telethon import events
 import re
 import asyncio
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
           replied = await event.get_reply_message() 
@@ -28,18 +28,18 @@ async def scan(event):
              return
           if replied.video or replied.document or replied.contact or replied.gif or replied.media or replied.sticker:
                await replied.forward_to(Sibyl_logs)
-          await Sibyl.send_message(Sibyl_logs, scan_request_string.format(enforcer=f"[{executer.first_name}](tg://user?id={executer.id})", spammer=sender, message = replied.text, reason= reason))
+          await System.send_message(Sibyl_logs, scan_request_string.format(enforcer=f"[{executer.first_name}](tg://user?id={executer.id})", spammer=sender, message = replied.text, reason= reason))
     else:
      return
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
 async def approve(event):
  if event.from_id in SIBYL and event.reply:
    replied = await event.get_reply_message()
    match = re.match('$SCAN', replied.text)
    if match:
      reply = replied.sender.id
-     me = await Sibyl.get_me()
+     me = await System.get_me()
      sender = await event.get_sender()
      if reply == me.id:
             list = re.findall('tg://user\?id=(\d+)', replied.text)
@@ -56,27 +56,27 @@ async def approve(event):
             else:
                 enforcer = id2
                 scam = id1
-            await Sibyl.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=scam, approved_by= f"[{sender.first_name}](tg://user?id={sender.id})"))
-            await Sibyl.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #{replied.id}") 
+            await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=scam, approved_by= f"[{sender.first_name}](tg://user?id={sender.id})"))
+            await System.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #{replied.id}") 
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
 async def proof(event): 
   if event.from_id in SIBYL:
-     msg = await Sibyl.send_message(event.chat_id, 'Trying to get Proof owo >>>>>')
+     msg = await System.send_message(event.chat_id, 'Trying to get Proof owo >>>>>')
      try: 
        proof_id = int(event.text.split(' ', 1)[1])
      except:
         await msg.edit('>>>>> Proof id is not valid') 
         return
      await msg.edit('Fetching msg details from proof id <<<<<<<') 
-     proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
+     proof = await System.get_messages(Sibyl_logs, ids=proof_id)
      reason = re.search(r"Reason: (.*)", proof.message).group(1)
      try:
          message = re.search('Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
        if message and message == "":
             proof_id -= 1
-            proof = await Sibyl.get_messages(Sibyl_logs, ids=proof_id)
+            proof = await System.get_messages(Sibyl_logs, ids=proof_id)
             if proof:
              if proof.media:
                    proof.forward_to(event.chat_id)
@@ -95,14 +95,14 @@ $REJECTED
 Suspect is not a target for enforcement action. The trigger of Dominator will be locked.
 """
             
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
 async def proof(event):
   if event.from_id in SIBYL and event.reply:
    match = re.match('$SCAN', event.text) 
    if match:
       replied = await event.get_reply_message()
       id = replied.id
-      await Sibyl.edit_message(Sibyl_logs, id, reject_string)
+      await System.edit_message(Sibyl_logs, id, reject_string)
 
 help_plus ="""
 Here is the help for **Main**:

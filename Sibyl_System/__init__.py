@@ -25,4 +25,4 @@ else:
 
 ENFORCERS.extend(SIBYL)
 
-Sibyl = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+System = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)

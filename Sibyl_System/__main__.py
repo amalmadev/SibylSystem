@@ -1,5 +1,5 @@
 from Sibyl_System.strings import help_string
-from Sibyl_System import SIBYL, Sibyl_logs, API_ID_KEY, API_HASH_KEY, STRING_SESSION, Sibyl
+from Sibyl_System import SIBYL, Sibyl_logs, API_ID_KEY, API_HASH_KEY, STRING_SESSION, System
 from Sibyl_System.strings import on_string
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
@@ -25,19 +25,19 @@ for load in to_load:
     if hasattr(imported, "help_plus") and imported.help_plus:
         HELP[imported.__plugin_name__.lower()] = imported 
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]status'))
+@System.on(events.NewMessage(pattern=r'[\.\?!]status'))
 async def status(event):
     if event.from_id in SIBYL:
-         await Sibyl.send_message(event.chat_id, on_string)
+         await System.send_message(event.chat_id, on_string)
     else:
          return
 
-@Sibyl.on(events.NewMessage(pattern=r'[\.\?!]help'))
+@System.on(events.NewMessage(pattern=r'[\.\?!]help'))
 async def help(event):
     if event.from_id in SIBYL:
          help_for = event.text.split(" ", 1)[1].lower()
          if help_for in HELP:
-              await Sibyl.send_message(event.chat_id, HELP[help_for].help_plus)
+              await System.send_message(event.chat_id, HELP[help_for].help_plus)
          else:
               return 
     else:
@@ -45,5 +45,5 @@ async def help(event):
 
 
 
-Sibyl.start()
-Sibyl.run_until_disconnected()
+System.start()
+Systsm.run_until_disconnected()
