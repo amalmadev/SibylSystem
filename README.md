@@ -2,20 +2,20 @@
 # Sibyl System
 > A proactive judgement system for group chats.
 
-[========]
+------------
 
 ## Purpose and schematics
 Based on the popular anime series "Psycho Pass", Sibyl is designed to work in a judgement and scan system where groups can request Cymatic scans for spammers, this then connects to the Sibyl network and sends the data to Sibyl for judgement, upon the approval of which the user is judged by the dominator. [Base idea of Sibyl](https://psychopass.fandom.com/wiki/Sibyl_System "Base idea of Sibyl")
 
 > To create and manage all Dominators and scanner systems in-country and to monitor the behavior of MWPSB personnel
 
-[========]
+------------
 
 ###Location
 Sibyl can be seen around telegram judging people and chats and logging the information at [@SibylSystem](http://t.me/SibylSystem "@SibylSystem")
 The base of operations of Sibyl are Beneath the NONA Tower and are only accessible by select personnel. 
 
-[========]
+------------
 
 ###Commands list
 Users can access the following commands, usage is limited based on enforcer privileges.
@@ -24,7 +24,7 @@ Users can access the following commands, usage is limited based on enforcer priv
     *approve* - Approve a scan request
     *proof* - Get message from proof id which is at the end of gban msg
 
-[========]
+------------
 
 ####Development and planning
 Sibyl is under active development and some future plans include 
@@ -33,8 +33,7 @@ Sibyl is under active development and some future plans include
 - Improved logging, access and replies strings 
 - Anything else we come up with as this project goes on.
 
-[========]
-
+------------
 ##### Trivia
 - The use of the Sibyl System to determine latent criminals with the help of Crime Coefficients is introduced at some point between 2090 and 2100.
 - The first version of the Sibyl System was introduced between 2030 and 2049. At this point it is solely a supercomputer which was able to make precise and extensive cymatic scans, so the Employment Aptitude Exam of the Ministry of Health, Labor and Welfare would become more efficient and valid. Along with the cymatic scans, the Psycho-Pass measurement is introduced.
