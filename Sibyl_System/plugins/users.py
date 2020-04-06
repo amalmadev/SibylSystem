@@ -26,7 +26,7 @@ async def rmenf(event):
      else:
         id = event.text.split(" ", 2)[1]
      if id in ENFORCERS:
-           ENFORCERS remove(id)
+           ENFORCERS.remove(id)
            await System.send_message(event.chat_id, f'Removed [{id}](tg://user?id={id}) from Enforcers') 
            return
      await System.send_message(event.chat_id, 'Is that person even a Enforcer?') 
