@@ -49,3 +49,20 @@ async def listuser(event):
          except:
            msg += f"•{z}\n"
       await System.send_message(event.chat_id, msg)
+
+from telethon.tl.functions.messages import ImportChatInviteRequest
+from telethon.tl.functions.channels import JoinChannelRequest
+@System.on(events.NewMessage(pattern=r'[\.\?!/]join'))
+async def join(event):
+   if event.from_id in SIBYL:
+      try:
+        link = event.text.split(" ", 1)[1]
+      except:
+        return
+      private = re.match(r"(https?://)?(www\.)?t(elegram)?\.(dog|me|org|com)/joinchat/(.*)", link)
+      if private:
+            await System(ImportChatInviteRequest(private.group(1)))
+            await System.send_messags(event.chat_id, "Joined chat!")
+      else:
+          await System(JoinChannelRequest(link))
+          await System.send_message(event.chat_id, "Joined chat!") 
