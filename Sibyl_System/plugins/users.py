@@ -40,12 +40,12 @@ async def listuser(event):
            user = await System.get_entity(x)
            msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
          except:
-           msg += f"•{user.id}\n"
+           msg += f"•{x}\n"
       msg += "Enforcers:\n"
       for z in ENFORCERS:
          try:
            user = await System.get_entity(z)
            msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
          except:
-           msg += f"•{user.id}\n"
+           msg += f"•{z}\n"
       await System.send_message(event.chat_id, msg)
