@@ -2,6 +2,7 @@ from Sibyl_System import SIBYL, ENFORCERS
 from Sibyl_System import System
 import asyncio
 from telethon import events
+import re 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]addenf'))
 async def addenf(event):
