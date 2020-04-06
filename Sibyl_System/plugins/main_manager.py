@@ -36,7 +36,7 @@ async def scan(event):
 async def approve(event):
  if event.from_id in SIBYL and event.reply:
    replied = await event.get_reply_message()
-   match = re.match('$SCAN', replied.text)
+   match = re.match('\$SCAN', replied.text)
    if match:
      reply = replied.sender.id
      me = await System.get_me()
@@ -98,7 +98,7 @@ Suspect is not a target for enforcement action. The trigger of Dominator will be
 @System.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
 async def proof(event):
   if event.from_id in SIBYL and event.reply:
-   match = re.match('$SCAN', event.text) 
+   match = re.match('\$SCAN', event.text) 
    if match:
       replied = await event.get_reply_message()
       id = replied.id
