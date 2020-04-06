@@ -63,7 +63,7 @@ async def join(event):
       private = re.match(r"(https?://)?(www\.)?t(elegram)?\.(dog|me|org|com)/joinchat/(.*)", link)
       if private:
             await System(ImportChatInviteRequest(private.group(5)))
-            await System.send_messags(event.chat_id, "Joined chat!")
+            await System.send_message(event.chat_id, "Joined chat!")
       else:
           await System(JoinChannelRequest(link))
           await System.send_message(event.chat_id, "Joined chat!") 
