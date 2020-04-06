@@ -26,7 +26,7 @@ async def rmenf(event):
      else:
         id = event.text.split(" ", 2)[1]
      if id in ENFORCERS:
-           ENFORCERS.append(id)
+           ENFORCERS remove(id)
            await System.send_message(event.chat_id, f'Removed [{id}](tg://user?id={id}) from Enforcers') 
            return
      await System.send_message(event.chat_id, 'Is that person even a Enforcer?') 
@@ -40,12 +40,12 @@ async def listuser(event):
            user = await System.get_entity(x)
            msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
          except:
-           msg += f"•{user.id}"
+           msg += f"•{user.id}\n"
       msg += "Enforcers:\n"
-      for x in ENFORCERS:
+      for z in ENFORCERS:
          try:
-           user = await System.get_entity(x)
+           user = await System.get_entity(z)
            msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
          except:
-           msg += f"•{user.id}"
+           msg += f"•{user.id}\n"
       await System.send_message(event.chat_id, msg)
