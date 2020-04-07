@@ -40,7 +40,7 @@ async def scan(event):
                await replied.forward_to(Sibyl_logs)
           msg = await System.send_message(Sibyl_logs, scan_request_string.format(enforcer=f"[{executer.first_name}](tg://user?id={executer.id})", spammer=sender, message = replied.text, reason= reason))
           if approve:
-              await gban(executer.id, sender, reason, msg.id, executer.id)
+              await gban(executer.id, sender, reason, msg.id, executer)
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]approve'))
 async def approve(event):
