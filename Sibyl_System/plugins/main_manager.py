@@ -28,7 +28,7 @@ async def scan(event):
                  sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
           executer = await event.get_sender()
           try:
-             if re.match('-f', event.text) and executer.id in SIBYL:
+             if re.match('.scan -f .*', event.text) and executer.id in SIBYL:
                   reason = event.text.split(" ", 2)[2]
                   approve = True 
              else:
@@ -36,7 +36,7 @@ async def scan(event):
                   approve = False
           except:
              return
-          if replied.video or replied.document or replied.contact or replied.gif or replied.media or replied.sticker:
+          if replied.video or replied.document or replied.contact or replied.gif or replied.sticker:
                await replied.forward_to(Sibyl_logs)
           msg = await System.send_message(Sibyl_logs, scan_request_string.format(enforcer=f"[{executer.first_name}](tg://user?id={executer.id})", spammer=sender, message = replied.text, reason= reason))
           if approve:
