@@ -5,7 +5,7 @@ from telethon import events
 import re
 import asyncio
 
-def gban(enforcer, target, reason, msg_id, approved_by):
+async def gban(enforcer, target, reason, msg_id, approved_by):
    await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=target, approved_by= f"[{approved_by.first_name}](tg://user?id={approved_by.id})"))
    await System.send_message(Sibyl_logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
    return True
@@ -66,7 +66,7 @@ async def approve(event):
             else:
                 enforcer = id2
                 scam = id1
-            gban(enforcer, scam, reason, replied.id, sender) 
+            asyncio.run(gban(enforcer, scam, reason, replied.id, sender)) 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
 async def proof(event): 
