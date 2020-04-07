@@ -66,7 +66,7 @@ async def approve(event):
             else:
                 enforcer = id2
                 scam = id1
-            await gban(enforcer, scam, reason, replied.id, sender) 
+            await gban(enforcer, scam, reason, replied.id, sender)
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
 async def proof(event): 
