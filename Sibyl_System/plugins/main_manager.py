@@ -16,7 +16,7 @@ async def scan(event):
           replied = await event.get_reply_message() 
           if replied.fwd_from: 
              reply = replied.fwd_from
-D          target = reply.from_id
+             target = reply.from_id
              if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
                    return
              if reply.from_name: 
