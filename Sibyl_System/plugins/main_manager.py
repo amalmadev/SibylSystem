@@ -5,6 +5,11 @@ from telethon import events
 import re
 import asyncio
 
+def gban(enforcer, target, reason, msg_id, approved_by):
+   await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=target, approved_by= f"[{approved_by.first_name}](tg://user?id={approved_by.id})"))
+   await System.send_message(Sibyl_logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
+   return True
+
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
@@ -23,7 +28,12 @@ async def scan(event):
                  sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
           executer = await event.get_sender()
           try:
-             reason = event.text.split(" ", maxsplit = 1)[1]
+             if re.match('-a', event.text) and executer.id in SIBYL:
+                  reason = event.text.split(" ", 2)[2]
+                  approve = True 
+             else:
+                  reason = event.text.split(" ", 1)[1]
+                  approve = False
           except:
              return
           if replied.video or replied.document or replied.contact or replied.gif or replied.media or replied.sticker:
@@ -56,8 +66,7 @@ async def approve(event):
             else:
                 enforcer = id2
                 scam = id1
-            await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=scam, approved_by= f"[{sender.first_name}](tg://user?id={sender.id})"))
-            await System.send_message(Sibyl_logs, f"/gban [{scam}](tg://user?id={scam}) {reason} // By {enforcer} | #{replied.id}") 
+            gban(enforcer, scam, reason, replied.id, sender) 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]proof'))
 async def proof(event): 
