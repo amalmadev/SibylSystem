@@ -53,6 +53,8 @@ async def listuser(event):
 
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.tl.functions.channels import LeaveChannelRequest
+
 @System.on(events.NewMessage(pattern=r'[\.\?!/]join'))
 async def join(event):
    if event.from_id in SIBYL:
@@ -67,3 +69,18 @@ async def join(event):
       else:
           await System(JoinChannelRequest(link))
           await System.send_message(event.chat_id, "Joined chat!") 
+
+@System.on(events.NewMessage(pattern=r'[\.\?!/]leave'))
+async def leave(event):
+   if event.from_id in SIBYL:
+      try:
+        link = event.text.split(" ", 1)[1]
+      except:
+        return
+      id = re.math('(\d+)', link)
+      If id:
+         await System(LeaveChannelRequest(int(id.group(1))))
+         await System.send_messags(event.chat_id, f"Successfully Left chat with id[{id}]") 
+      else:
+         await System(LeaveChannelRequest(link))
+         await System.send_messags(event.chat_id, f"Successfully Left chat[{link}]")
