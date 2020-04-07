@@ -16,6 +16,7 @@ async def scan(event):
           replied = await event.get_reply_message() 
           if replied.fwd_from: 
              reply = replied.fwd_from
+D          target = reply.from_id
              if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
                    return
              if reply.from_name: 
@@ -26,6 +27,7 @@ async def scan(event):
                  if replied.sender.id in SIBYL or replied.sender.id in ENFORCERS:
                           return
                  sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
+                 target = replied.sender.id
           executer = await event.get_sender()
           try:
              if re.match('.scan -f .*', event.text) and executer.id in SIBYL:
