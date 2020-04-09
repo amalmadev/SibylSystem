@@ -107,7 +107,7 @@ Suspect is not a target for enforcement action. The trigger of Dominator will be
 """
             
 @System.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
-async def proof(event):
+async def reject(event):
   if event.from_id in SIBYL and event.reply:
    match = re.match('\$SCAN', event.text) 
    if match:
@@ -119,8 +119,10 @@ help_plus ="""
 Here is the help for **Main**:
 
 `scan` - Reply to a message with reason to send a request for gbans
+Flags( -f // auto approve) 
 `approve` - Approve a scan request
 `proof` - Get message from proof id which is at the end of gban msg 
+`reject` - Reject a scan request 
 """
 
 __plugin_name__ = "Main" 
