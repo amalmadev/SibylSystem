@@ -1,4 +1,6 @@
 [![Sibyl System](https://i.imgur.com/elrXfOE.jpg "Sibyl System")](https://github.com/AnimeKaizoku/SibylSystem "Sibyl System")
+#A Telethon UserBot to make gbanning easy 
+
 # Sibyl System
 > A proactive judgement system for group chats.
 
