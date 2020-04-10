@@ -81,7 +81,11 @@ async def proof(event):
         return
      await msg.edit('Fetching msg details from proof id <<<<<<<') 
      proof = await System.get_messages(Sibyl_logs, ids=proof_id)
-     reason = re.search(r"Scan Reason: (.*)", proof.message).group(1)
+     try:
+         reason = re.search(r"Scan Reason: (.*)", proof.message).group(1)
+     except: 
+         await msg.edit('>>>>It looks like I cannot see the msg or the proof id is not valid')
+         break 
      try:
          message = re.search('Target Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
