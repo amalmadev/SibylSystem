@@ -85,7 +85,7 @@ async def proof(event):
          reason = re.search(r"Scan Reason: (.*)", proof.message).group(1)
      except: 
          await msg.edit('>>>>It looks like I cannot see the msg or the proof id is not valid')
-         break 
+         return
      try:
          message = re.search('Target Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
