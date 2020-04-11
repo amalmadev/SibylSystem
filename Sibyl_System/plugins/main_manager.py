@@ -53,6 +53,7 @@ async def approve(event):
      reply = replied.sender.id
      me = await System.get_me()
      sender = await event.get_sender()
+     #checks to not gban the Gbanner and find who is who
      if reply == me.id:
             list = re.findall('tg://user\?id=(\d+)', replied.text)
             reason = re.search(r"Scan Reason: (.*)", replied.text).group(1)
@@ -122,11 +123,11 @@ async def reject(event):
 help_plus ="""
 Here is the help for **Main**:
 
-`scan` - Reply to a message with reason to send a request for gbans
+`scan` - **Reply to a message with reason to send a request for gbans**
 Flags( -f // auto approve) 
-`approve` - Approve a scan request
-`proof` - Get message from proof id which is at the end of gban msg 
-`reject` - Reject a scan request 
+`approve` - **Approve a scan request**
+`proof` - **Get message from proof id which is at the end of gban msg **
+`reject` - **Reject a scan request** 
 """
 
 __plugin_name__ = "Main" 
