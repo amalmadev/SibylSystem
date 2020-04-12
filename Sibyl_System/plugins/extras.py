@@ -32,21 +32,14 @@ async def rmenf(event):
            return
      await System.send_message(event.chat_id, 'Is that person even a Enforcer?') 
 
-@System.on(events.NewMessage(pattern=r'[\.\?!/]listusers'))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]listenf'))
 async def listuser(event):
   if event.from_id in SIBYL:
-      msg = "Sibyl users:\n" 
-      for x in SIBYL:
-         try:
-           user = await System.get_entity(x)
-           msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
-         except:
-           msg += f"•{x}\n"
-      msg += "Enforcers:\n"
+      msg = "Enforcers:\n"
       for z in ENFORCERS:
          try:
            user = await System.get_entity(z)
-           msg += f"•[{user.first_name}](tg://user?id={user.id})\n"
+           msg += f"•[{user.first_name}](tg://user?id={user.id}) | {z}\n"
          except:
            msg += f"•{z}\n"
       await System.send_message(event.chat_id, msg)
@@ -84,3 +77,18 @@ async def leave(event):
       else:
          await System(LeaveChannelRequest(link))
          await System.send_message(event.chat_id, f"Successfully Left chat[{link}]")
+
+help_plus = """
+Help! 
+`addenf` - add a user to enforcers 
+Format : addenf <user id / as reply >
+`rmenf` - remove a user from enforcers 
+Format : rmenf <user id/ as reply>
+`listenf` - List all enforcers
+`join` - join a chat 
+Format : join < chat username or invite link >
+`leave` - leave a chat 
+Format : leave < chat username or id >
+"""
+
+__plugin_name__ = "extras" 
