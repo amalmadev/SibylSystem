@@ -10,7 +10,7 @@ owo = {}
 def add_to_blacklist(word, add = False):
      bl = db.find_one({'_id': 1})
      current = bl['blacklisted']
-     If add:
+     if add:
         if word in current: 
              return False
         current.append(word)
