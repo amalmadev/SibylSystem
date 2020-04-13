@@ -128,11 +128,15 @@ async def reject(event):
 help_plus ="""
 Here is the help for **Main**:
 
-`scan` - **Reply to a message with reason to send a request for gbans**
-Flags( -f // auto approve) 
-`approve` - **Approve a scan request**
+`scan` - **Reply to a message WITH reason to send a request to Sibyl for judgement**
+`approve` - **Approve a scan request (Only works in Public Safety Bureau)**
 `proof` - **Get message from proof id which is at the end of gban msg **
 `reject` - **Reject a scan request** 
+
+**Note:** adding -f to a scan will force an approval.
+**Example:** `/scan -f bitcoin spammer`
+
+Also see "?help extras" for extended functions.
 """
 
 __plugin_name__ = "Main" 
