@@ -1,4 +1,4 @@
-on_string = "Sibyl-System is now active!"
+on_string = "This chat is connected to Sibyl, Cymatic scans are now possible!"
 
 #Make sure not to change this too much 
 #If you still wanna change it change the regex too
@@ -14,7 +14,7 @@ scan_approved_string = """
 **Enforcer** = {enforcer}
 **Target User** = {scam}
 **Approved By** = {approved_by}
-**Crime Coefficient**= over 300
+**Crime Coefficient**= Over 300
 """
 # https://psychopass.fandom.com/wiki/Crime_Coefficient_(Index)
 # https://psychopass.fandom.com/wiki/The_Dominator
