@@ -29,3 +29,10 @@ ENFORCERS.extend(SIBYL)
 session = aiohttp.ClientSession()
 System = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 MONGO_CLIENT = pymongo.MongoClient(MONGO_DB_URL)
+collection = MONGO_CLIENT['Sibyl']['Main'] 
+if collection.count_documents({ '_id': 1}, limit = 1) != 0:
+  pass
+else: 
+   dict = {"_id": 1}
+   dict["blacklisted"] = []
+   collection.insert_one(dict) 
