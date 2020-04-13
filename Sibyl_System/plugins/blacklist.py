@@ -12,3 +12,13 @@ def add_to_blacklist(word):
      upd['blacklisted'] = current
      owo['$set'] = upd
      db.update_one(with, bl)
+
+@System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
+async def addenf(event):
+  if event.from_id in SIBYL:
+     try:
+       text = event.text.split(" ", 1)[1]
+     except:
+       return 
+     add_to_blacklist(text)
+     await System.send_message(event.chat_id, f"Added {text} to blacklist") 
