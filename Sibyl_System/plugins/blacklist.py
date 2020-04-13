@@ -22,6 +22,7 @@ def add_to_blacklist(word, add = False):
      upd['blacklisted'] = current
      owo['$set'] = upd
      db.update_one(bl, owo)
+     return True
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
 async def addenf(event):
@@ -47,5 +48,5 @@ async def addenf(event):
      if a:
         await System.send_message(event.chat_id, f"Removed {text} from blacklist") 
      else:
-        await System.send_message(event.chat_id, f" {text} is not blacklisted") 
+        await System.send_message(event.chat_id, f"{text} is not blacklisted") 
 
