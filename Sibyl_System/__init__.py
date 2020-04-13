@@ -1,6 +1,6 @@
 from telethon import TelegramClient, events
 import asyncio
-
+import aiohttp
 from telethon.sessions import StringSession
 import os
 
@@ -24,5 +24,5 @@ else:
  Sibyl_approved_logs = config.Sibyl_approved_logs
 
 ENFORCERS.extend(SIBYL)
-
+session = aiohttp.ClientSession()
 System = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
