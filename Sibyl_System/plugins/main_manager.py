@@ -4,6 +4,7 @@ from Sibyl_System import System
 from telethon import events
 import re
 import asyncio
+from Sibyl_System import session
 
 async def gban(enforcer, target, reason, msg_id, approved_by):
    await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=target, approved_by= f"[{approved_by.first_name}](tg://user?id={approved_by.id})"))
@@ -90,7 +91,7 @@ async def proof(event):
      try:
          message = re.search('Target Message: (.*)', proof.message, re.DOTALL).group(1)
      except:
-       if message and message == "":
+       if not message or message == "":
             proof_id -= 1
             proof = await System.get_messages(Sibyl_logs, ids=proof_id)
             if proof:
@@ -102,7 +103,9 @@ async def proof(event):
             else : 
                   await msg.edit(f" Failed to get proof, Is the proof id valid?")
                   return
-     await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Reason**: {reason}\n**Message**: `{message}`") 
+     async with session.get('https://nekobin.com/api/documents', json = {'content': message}) as r:
+           paste = f"https://nekobin.com/{r.json()['result']['key']}"
+     await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Reason**: {reason}\n**Message**: `{paste}`") 
 
 reject_string ="""
 $REJECTED
