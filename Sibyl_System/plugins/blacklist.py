@@ -13,7 +13,7 @@ def add_to_blacklist(word):
      current.append(word)
      upd['blacklisted'] = current
      owo['$set'] = upd
-     db.update_one(owo, bl)
+     db.update_one(bl, owo)
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
 async def addenf(event):
