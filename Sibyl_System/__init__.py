@@ -3,7 +3,7 @@ import asyncio
 import aiohttp
 from telethon.sessions import StringSession
 import os
-
+import pymongo
 ENV = bool(os.environ.get('ENV', False))
 if ENV:
    API_ID_KEY = int(os.environ.get('API_ID_KEY', None))
@@ -28,3 +28,4 @@ else:
 ENFORCERS.extend(SIBYL)
 session = aiohttp.ClientSession()
 System = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
+MONGO_CLIENT = pymongo.MongoClient(MONGO_DB_URL)
