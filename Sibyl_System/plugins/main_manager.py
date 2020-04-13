@@ -104,7 +104,7 @@ async def proof(event):
                   await msg.edit(f" Failed to get proof, Is the proof id valid?")
                   return
      async with session.get('https://nekobin.com/api/documents', json = {'content': message}) as r:
-           paste = f"https://nekobin.com/{r.json()['result']['key']}"
+           paste = f"https://nekobin.com/{(await r.json())['result']['key']}"
      await msg.edit(f"**Proof from ID**[`{proof_id}`]:\n**Reason**: {reason}\n**Message**: `{paste}`") 
 
 reject_string ="""
