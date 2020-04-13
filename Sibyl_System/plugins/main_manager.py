@@ -117,11 +117,13 @@ Suspect is not a target for enforcement action. The trigger of Dominator will be
 @System.on(events.NewMessage(pattern=r'[\.\?!/]reject'))
 async def reject(event):
   if event.from_id in SIBYL and event.reply:
-   match = re.match('\$SCAN', event.text) 
-   if match:
-      replied = await event.get_reply_message()
-      id = replied.id
-      await System.edit_message(Sibyl_logs, id, reject_string)
+   replied = await event.get_reply_message()
+   me = await System.get_me()
+   if replied.id == me.id:
+     match = re.match('\$SCAN', replied.text) 
+     if match:
+        id = replied.id
+        await System.edit_message(Sibyl_logs, id, reject_string)
 
 help_plus ="""
 Here is the help for **Main**:
