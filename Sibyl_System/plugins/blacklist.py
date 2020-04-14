@@ -59,6 +59,15 @@ async def rmbl(event):
      else:
         await System.send_message(event.chat_id, f"{text} is not blacklisted") 
 
+@System.on(events.NewMessage(pattern=r'[\.\?!]listbl'))
+async def listbl(event):
+   if event.from_id in SIBYL:
+      list = await get_blacklist()
+      msg = "Currently Blacklisted strings:\n"
+      for x in list:
+         msg += f"•{x}"
+      await System.send_message(event.chat_id, msg) 
+         
 
 @System.on(events.NewMessage(incoming=True))
 async def auto_gban_request(event):
@@ -67,6 +76,7 @@ async def auto_gban_request(event):
     text = event.text
     words = await get_blacklist()
     sender = await event.get_sender()
+    if event.chat_id == Sibyl_logs: return 
     if words:
       for word in words:
           pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
@@ -82,4 +92,5 @@ Flags( -e // escape text )
 format: "addbl -e xyz" & "addbl x.*y"
 `rmbl` - remove trigger from blacklist 
 format: "rmbl xyz"
+`listbl` - list blacklisted words 
 """
