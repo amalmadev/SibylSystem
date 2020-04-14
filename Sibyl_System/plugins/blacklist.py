@@ -30,12 +30,16 @@ async def get_blacklist():
      return json.get('blacklisted', []) 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
-async def addenf(event):
+async def addbl(event):
   if event.from_id in SIBYL:
-     try:
-       text = event.text.split(" ", 1)[1]
-     except:
-       return 
+     flag = re.match(".addbl -e (.*)", event.text, re.DOTALL)
+     if flag:
+        text = re.escape(flag.group(1))
+     else:
+       try:
+         text = event.text.split(" ", 1)[1]
+       except:
+         return 
      a = update_blacklist(text, add = True)
      if a:
         await System.send_message(event.chat_id, f"Added {text} to blacklist") 
@@ -43,7 +47,7 @@ async def addenf(event):
         await System.send_message(event.chat_id, f" {text} is already blacklisted") 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]rmbl'))
-async def addenf(event):
+async def rmbl(event):
   if event.from_id in SIBYL:
      try:
        text = event.text.split(" ", 1)[1]
@@ -68,3 +72,12 @@ async def auto_gban_request(event):
           pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
           if re.search(pattern, text, flags=re.IGNORECASE):
                   await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nMessage: {event.text}") 
+
+help_plus ="""
+Here is help for **Blacklist**
+`addbl` - Add trigger to blacklist 
+Flags( -e // escape text ) 
+format: "addbl -e xyz" & "addbl x.*y"
+`rmbl` - remove trigger from blacklist 
+format: "rmbl xyz"
+"""
