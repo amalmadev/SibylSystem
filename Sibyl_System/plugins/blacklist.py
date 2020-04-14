@@ -1,13 +1,14 @@
 import pymongo 
-from Sibyl_System import MONGO_CLIENT, System, SIBYL, ENFORCERS
+from Sibyl_System import MONGO_CLIENT, System, SIBYL, ENFORCERS, Sibyl_logs
 from telethon import events 
+import asyncio 
 
 db = MONGO_CLIENT['Sibyl']['Main']
 #cant find better names
 upd = {} 
 owo = {}
 
-def add_to_blacklist(word, add = False):
+def update_blacklist(word, add = False):
      bl = db.find_one({'_id': 1})
      current = bl['blacklisted']
      if add:
@@ -23,6 +24,9 @@ def add_to_blacklist(word, add = False):
      owo['$set'] = upd
      db.update_one(db.find_one({'_id': 1}), owo)
      return True
+
+async def get_blacklist():
+     return db.find({'_id': 1}).get('blacklisted', []) 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
 async def addenf(event):
@@ -50,6 +54,20 @@ async def addenf(event):
      else:
         await System.send_message(event.chat_id, f"{text} is not blacklisted") 
 
+
+@System.on(events.NewMessage(incoming=True))
+async def auto_gban_request(event):
+    if event.from_id in ENFORCERS or event.from_id in SIBYL:
+         return
+    text = event.text
+    words = get_blacklist()
+    sender = await event.get_sender()
+    if words:
+      for word in words:
+          pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
+          if re.search(pattern, text, flags=re.IGNORECASE):
+                  await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nMessage: {event.text}"
+            
 help_plus = """
 Here is help for **OwO**
 addbl - **add word to blacklist*
