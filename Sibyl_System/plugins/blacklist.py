@@ -2,7 +2,7 @@ import pymongo
 from Sibyl_System import MONGO_CLIENT, System, SIBYL, ENFORCERS, Sibyl_logs
 from telethon import events 
 import asyncio 
-
+import re 
 db = MONGO_CLIENT['Sibyl']['Main']
 #cant find better names
 upd = {} 
