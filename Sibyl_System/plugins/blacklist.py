@@ -66,4 +66,4 @@ async def auto_gban_request(event):
       for word in words:
           pattern = r"( |^|[^\w])" + re.escape(word) + r"( |$|[^\w])"
           if re.search(pattern, text, flags=re.IGNORECASE):
-                  await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nMessage: {event.text}"
+                  await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nMessage: {event.text}") 
