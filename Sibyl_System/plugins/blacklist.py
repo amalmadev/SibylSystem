@@ -21,7 +21,7 @@ def add_to_blacklist(word, add = False):
           return False
      upd['blacklisted'] = current
      owo['$set'] = upd
-     db.update_one(bl, owo)
+     db.update_one(db.find_one({'_id': 1}), owo)
      return True
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
