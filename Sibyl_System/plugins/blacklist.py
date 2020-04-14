@@ -50,3 +50,9 @@ async def addenf(event):
      else:
         await System.send_message(event.chat_id, f"{text} is not blacklisted") 
 
+help_plus = """
+Here is help for **OwO**
+addbl - **add word to blacklist*
+rmbl - **remove word from blacklist**
+"""
+    
