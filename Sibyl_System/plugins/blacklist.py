@@ -49,7 +49,7 @@ async def addenf(event):
        text = event.text.split(" ", 1)[1]
      except:
        return 
-     a = add_to_blacklist(text, add = False)
+     a = update_blacklist(text, add = False)
      if a:
         await System.send_message(event.chat_id, f"Removed {text} from blacklist") 
      else:
