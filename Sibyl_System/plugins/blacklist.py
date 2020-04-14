@@ -60,7 +60,7 @@ async def auto_gban_request(event):
     if event.from_id in ENFORCERS or event.from_id in SIBYL:
          return
     text = event.text
-    words = get_blacklist()
+    words = await get_blacklist()
     sender = await event.get_sender()
     if words:
       for word in words:
