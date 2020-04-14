@@ -26,7 +26,7 @@ def update_blacklist(word, add = False):
      return True
 
 async def get_blacklist():
-     json = db.find({'_id': 1})
+     json = db.find_one({'_id': 1})
      return json.get('blacklisted', []) 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
