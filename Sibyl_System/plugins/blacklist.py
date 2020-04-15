@@ -67,8 +67,8 @@ async def listbl(event):
       for x in list:
          msg += f"•{x}\n"
       await System.send_message(event.chat_id, msg) 
-         
 
+@System.on(events.MessageEdited(incoming=True))
 @System.on(events.NewMessage(incoming=True))
 async def auto_gban_request(event):
     if event.from_id in ENFORCERS or event.from_id in SIBYL:
