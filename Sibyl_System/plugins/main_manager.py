@@ -14,16 +14,17 @@ async def gban(enforcer, target, reason, msg_id, approved_by):
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
-          replied = await event.get_reply_message() 
-          if replied.fwd_from: 
-             reply = replied.fwd_from
-             target = reply.from_id
-             if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
-                   return
-             if reply.from_name: 
-                 sender = f"[{reply.from_name}](tg://user?id={reply.from_id})"
-             else: 
-                 sender = f"[{reply.from_id}](tg://user?id={reply.from_id})"
+          replied = await event.get_reply_message()
+          if re.match('.scan -f -o .*', event.text) or re.match(".scan -o .*", event.text):
+            if replied.fwd_from: 
+               reply = replied.fwd_from
+               target = reply.from_id
+               if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
+                     return
+               if reply.from_name: 
+                   sender = f"[{reply.from_name}](tg://user?id={reply.from_id})"
+               else: 
+                  sender = f"[{reply.from_id}](tg://user?id={reply.from_id})"
           else: 
                  if replied.sender.id in SIBYL or replied.sender.id in ENFORCERS:
                           return
@@ -134,8 +135,9 @@ Here is the help for **Main**:
 `reject` - **Reject a scan request** 
 
 **Note:** adding -f to a scan will force an approval.
+**Note 2:** adding -o will gban the original sender , If using both approve and original sender flag the "-f" flag must come first!
 **Example:** `/scan -f bitcoin spammer`
-
+**Example 2:** `!scan -f -o owo` 
 Also see "?help extras" for extended functions.
 """
 
