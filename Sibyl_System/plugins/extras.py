@@ -3,6 +3,8 @@ from Sibyl_System import System
 import asyncio
 from telethon import events
 import re 
+from telethon.utils import resolve_invite_link
+
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]addenf'))
 async def addenf(event):
@@ -63,6 +65,24 @@ async def join(event):
           await System(JoinChannelRequest(link))
           await System.send_message(event.chat_id, "Joined chat!") 
 
+
+@System.on(events.NewMessage(pattern=r'[\.\?!/]resolve))
+async def join(event):
+   if event.from_id in SIBYL:
+      try:
+        link = event.text.split(" ", 1)[1]
+      except:
+        return
+      match = re.match(r"(https?://)?(www\.)?t(elegram)?\.(dog|me|org|com)/joinchat/(.*)", link)
+      if match:
+        try:
+           data = resolve_invite_link(match.group(5))
+        except:
+           await System.send_message(event.chat_id,"Couldn't fetch data from that link") 
+           return 
+        await System.send_message(event.chat_id, f"Info from hash {match.group(5):\n**Link Creator**: {data[0]\n**Chat ID**: {data[1]}")
+
+
 @System.on(events.NewMessage(pattern=r'[\.\?!/]leave'))
 async def leave(event):
    if event.from_id in SIBYL:
@@ -89,6 +109,7 @@ Format : rmenf <user id/ as reply>
 Format : join < chat username or invite link >
 `leave` - leave a chat 
 Format : leave < chat username or id >
+`resolve` - owo
 """
 
 __plugin_name__ = "extras" 
