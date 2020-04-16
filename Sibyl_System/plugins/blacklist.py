@@ -153,7 +153,7 @@ async def auto_wlc_gban(event):
           pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
           if re.search(pattern, text, flags=re.IGNORECASE):
                   await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nUser joined and blacklisted string in name\nMatched String = {word}")
-							    return
+                  return
 
 
 __plugin_name__ ="blacklist" 
