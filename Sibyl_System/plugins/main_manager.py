@@ -15,10 +15,20 @@ async def gban(enforcer, target, reason, msg_id, approved_by):
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
           replied = await event.get_reply_message() 
-          if replied.sender.id in SIBYL or replied.sender.id in ENFORCERS:
-                     return
-          sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
-          target = replied.sender.id
+          if replied.fwd_from: 
+             reply = replied.fwd_from
+             target = reply.from_id
+             if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
+                   return
+             if reply.from_name: 
+                 sender = f"[{reply.from_name}](tg://user?id={reply.from_id})"
+             else: 
+                 sender = f"[{reply.from_id}](tg://user?id={reply.from_id})"
+          else: 
+                 if replied.sender.id in SIBYL or replied.sender.id in ENFORCERS:
+                          return
+                 sender = f"[{replied.sender.first_name}](tg://user?id={replied.sender.id})"
+                 target = replied.sender.id
           executer = await event.get_sender()
           try:
              if re.match('.scan -f .*', event.text) and executer.id in SIBYL:
