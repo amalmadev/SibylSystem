@@ -30,9 +30,12 @@ session = aiohttp.ClientSession()
 System = TelegramClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 MONGO_CLIENT = pymongo.MongoClient(MONGO_DB_URL)
 collection = MONGO_CLIENT['Sibyl']['Main'] 
-if collection.count_documents({ '_id': 1}, limit = 1) != 0:
-  pass
-else: 
+if collection.count_documents({ '_id': 1}, limit = 1) == 0:
    dict = {"_id": 1}
    dict["blacklisted"] = []
    collection.insert_one(dict) 
+
+if collection.count_documents({ '_id': 2}, limit = 1) == 0:
+   dict = {"_id": 2, "Type": "Wlc Blacklist"}
+   dict["blacklisted_wlc"] = []
+   collection.insert_one(dict)
