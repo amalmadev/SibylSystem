@@ -80,7 +80,7 @@ async def join(event):
         except:
            await System.send_message(event.chat_id,"Couldn't fetch data from that link") 
            return 
-        await System.send_message(event.chat_id, f"Info from hash {match.group(5):\n**Link Creator**: {data[0]\n**Chat ID**: {data[1]}")
+        await System.send_message(event.chat_id, f"Info from hash {match.group(5)}:\n**Link Creator**: {data[0]}\n**Chat ID**: {data[1]}")
 
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]leave'))
