@@ -71,13 +71,13 @@ async def addbl(event):
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]addwlcbl'))
 async def wlcbl(event):
-	if event.from_id in SIBYL:
+ if event.from_id in SIBYL:
      flag = re.match(".addbl -e (.*)", event.text, re.DOTALL)
      if flag:
         text = re.escape(flag.group(1))
      else:
        try:
-         text = event.text.split(" ", 1)[1]
+          text = event.text.split(" ", 1)[1]
        except:
          return 
      a = await update_wlc_blacklist(text, add = True)
@@ -143,11 +143,13 @@ async def auto_gban_request(event):
 
 @System.on(events.ChatAction())  # pylint:disable=E0602
 async def auto_wlc_gban(event):
-	  if event.from_id in ENFORCERS or event.from_id in SIBYL: return
+	if event.from_id in ENFORCERS or event.from_id in SIBYL: return
     if event.user_joined:
 			words = await get_wlc_bl()
       if words:
-      for word in words:
+	   user = await event.get_user()
+       text = user.first_name
+       for word in words:
           pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
           if re.search(pattern, text, flags=re.IGNORECASE):
                   await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nUser joined and blacklisted string in name\nMatched String = {word}")
