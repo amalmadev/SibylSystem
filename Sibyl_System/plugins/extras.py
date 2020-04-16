@@ -66,7 +66,7 @@ async def join(event):
           await System.send_message(event.chat_id, "Joined chat!") 
 
 
-@System.on(events.NewMessage(pattern=r'[\.\?!/]resolve))
+@System.on(events.NewMessage(pattern=r'[\.\?!/]resolve'))
 async def join(event):
    if event.from_id in SIBYL:
       try:
