@@ -147,14 +147,13 @@ async def auto_wlc_gban(event):
     if event.user_joined:
       words = await get_wlc_bl()
       if words:
-       user = await event.get_user()
-       text = user.first_name
-       for word in words:
-          pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
-          if re.search(pattern, text, flags=re.IGNORECASE):
-                  await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nUser joined and blacklisted string in name\nMatched String = {word}")
-                  return
-
+        user = await event.get_user()
+        text = user.first_name
+        for word in words:
+           pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
+           if re.search(pattern, text, flags=re.IGNORECASE):
+                   await System.send_message(Sibyl_logs, f"$AUTO\nTriggered by: [{event.from_id}](tg://user?id={event.from_id})\nUser joined and blacklisted string in name\nMatched String = {word}")
+                   return
 
 __plugin_name__ ="blacklist" 
 
