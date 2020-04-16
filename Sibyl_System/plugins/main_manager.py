@@ -16,7 +16,8 @@ async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
           replied = await event.get_reply_message()
           if re.match('.scan -f -o .*', event.text) or re.match(".scan -o .*", event.text):
-            if replied.fwd_from: 
+            if replied.fwd_from:
+               trim = 3
                reply = replied.fwd_from
                target = reply.from_id
                if reply.from_id in ENFORCERS or reply.from_id in SIBYL:
@@ -33,7 +34,10 @@ async def scan(event):
           executer = await event.get_sender()
           try:
              if re.match('.scan -f .*', event.text) and executer.id in SIBYL:
-                  reason = event.text.split(" ", 2)[2]
+                  if trim:
+                       reason = event.text.split(" ", trim)[3]
+                  else:
+                       reason = event.text.split(" ", 2)[2]
                   approve = True 
              else:
                   reason = event.text.split(" ", 1)[1]
