@@ -143,11 +143,11 @@ async def auto_gban_request(event):
 
 @System.on(events.ChatAction())  # pylint:disable=E0602
 async def auto_wlc_gban(event):
-	if event.from_id in ENFORCERS or event.from_id in SIBYL: return
+    if event.from_id in ENFORCERS or event.from_id in SIBYL: return
     if event.user_joined:
-			words = await get_wlc_bl()
+      words = await get_wlc_bl()
       if words:
-	   user = await event.get_user()
+       user = await event.get_user()
        text = user.first_name
        for word in words:
           pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
