@@ -1,4 +1,4 @@
-from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs
+from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs, GBAN_MSG_LOGS
 from Sibyl_System.strings import scan_request_string, scan_approved_string
 from Sibyl_System import System
 from telethon import events
@@ -7,9 +7,13 @@ import asyncio
 from Sibyl_System import session
 
 async def gban(enforcer, target, reason, msg_id, approved_by):
+   if GBAN_MSG_LOGS:
+        logs = GBAN_MSG_LOGS
+   else:
+        logs = GBAN_MSG_LOGS
    await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=target, approved_by= f"[{approved_by.first_name}](tg://user?id={approved_by.id})"))
-   await System.send_message(Sibyl_logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}")
-   await System.send_message(Sibyl_logs, f"/fban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
+   await System.send_message(logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}")
+   await System.send_message(logs, f"/fban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
    return True
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
