@@ -41,3 +41,12 @@ if collection.count_documents({ '_id': 2}, limit = 1) == 0:
    dict = {"_id": 2, "Type": "Wlc Blacklist"}
    dict["blacklisted_wlc"] = []
    collection.insert_one(dict)
+
+def system_cmd(pattern=None, allow_sibyl=True, allow_enforcer = False, **args):
+    if pattern:
+        args["pattern"] = re.compile(r"[\?\.!/]" + pattern)
+    if allow_sibyl and allow_enforcer:
+        args["from_users"] = ENFORCERS
+    else:
+        args["from_users"] = SIBYL
+    return events.NewMessage(**args)
