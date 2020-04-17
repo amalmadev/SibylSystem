@@ -8,7 +8,8 @@ from Sibyl_System import session
 
 async def gban(enforcer, target, reason, msg_id, approved_by):
    await System.send_message(Sibyl_approved_logs, scan_approved_string.format(enforcer=enforcer, scam=target, approved_by= f"[{approved_by.first_name}](tg://user?id={approved_by.id})"))
-   await System.send_message(Sibyl_logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
+   await System.send_message(Sibyl_logs, f"/gban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}")
+   await System.send_message(Sibyl_logs, f"/fban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
    return True
 
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
@@ -34,10 +35,7 @@ async def scan(event):
           executer = await event.get_sender()
           try:
              if re.match('.scan -f .*', event.text) and executer.id in SIBYL:
-                  if trim:
-                       reason = event.text.split(" ", trim)[3]
-                  else:
-                       reason = event.text.split(" ", 2)[2]
+                  if not trim: reason = event.text.split(" ", trim)[2]
                   approve = True 
              else:
                   reason = event.text.split(" ", 1)[1]
@@ -46,6 +44,7 @@ async def scan(event):
              return
           if replied.video or replied.document or replied.contact or replied.gif or replied.sticker:
                await replied.forward_to(Sibyl_logs)
+          if trim: reason = event.text.split(" ", trim)[3]
           msg = await System.send_message(Sibyl_logs, scan_request_string.format(enforcer=f"[{executer.first_name}](tg://user?id={executer.id})", spammer=sender, message = replied.text, reason= reason))
           if approve:
               await gban(executer.id, target, reason, msg.id, executer)
@@ -139,7 +138,7 @@ Here is the help for **Main**:
 `reject` - **Reject a scan request** 
 
 **Note:** adding -f to a scan will force an approval.
-**Note 2:** adding -o will gban the original sender , If using both approve and original sender flag the "-f" flag must come first!
+**Note 2:** adding -o will gban&fban the original sender , If using both approve and original sender flag the "-f" flag must come first!
 **Example:** `/scan -f bitcoin spammer`
 **Example 2:** `!scan -f -o owo` 
 Also see "?help extras" for extended functions.
