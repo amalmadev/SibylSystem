@@ -19,6 +19,7 @@ async def gban(enforcer, target, reason, msg_id, approved_by):
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
+          trim = None 
           replied = await event.get_reply_message()
           if re.match('.scan -f -o .*', event.text) or re.match(".scan -o .*", event.text):
             if replied.fwd_from:
