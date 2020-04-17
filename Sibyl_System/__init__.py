@@ -14,6 +14,7 @@ if ENV:
    MONGO_DB_URL = os.environ.get('MONGO_DB_URL') 
    Sibyl_logs = int(os.environ.get('Sibyl_logs', None))
    Sibyl_approved_logs = int(os.environ.get('Sibyl_Approved_Logs', None))
+   GBAN_MSG_LOGS = int(os.environ.get('GBAN_MSG_LOGS', None)) 
 else:
  import Sibyl_System.config
  API_ID_KEY = config.API_ID 
@@ -24,6 +25,7 @@ else:
  ENFORCERS = config.ENFORCERS
  Sibyl_logs = config.Sibyl_logs
  Sibyl_approved_logs = config.Sibyl_approved_logs
+ GBAN_MSG_LOGS = config.GBAN_MSG_LOGS
 
 ENFORCERS.extend(SIBYL)
 session = aiohttp.ClientSession()
