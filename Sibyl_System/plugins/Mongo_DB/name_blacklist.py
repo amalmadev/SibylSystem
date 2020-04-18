@@ -9,6 +9,10 @@ owo = {}
 
 
 async def update_wlc_blacklist(word, add = False):
+     db = MONGO_CLIENT['Sibyl']['Main']
+     #cant find better names
+     upd = {} 
+     owo = {}
      bl = db.find_one({'_id': 2})
      current = bl['blacklisted_wlc']
      if add:
@@ -27,6 +31,7 @@ async def update_wlc_blacklist(word, add = False):
 
 
 async def get_wlc_bl():
+        db = MONGO_CLIENT['Sibyl']['Main']
 	json = db.find_one({"_id": 2})
 	return json.get("blacklisted_wlc", [])
 
