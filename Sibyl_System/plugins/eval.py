@@ -14,8 +14,9 @@ wizardry = 0
 
 @System.on(system_cmd(pattern = r"sibyl (exec|execute|x|ex)"))
 async def run(event):
-  code = event.text.split(" ", 1)
-  if len(code) == 1: return
+  code = event.text.split(" ", 2)
+  if len(code) == 2: return
+  code = code[2]
   old_stdout = sys.stdout
   old_stderr = sys.stderr
   redirected_output = sys.stdout = StringIO()
