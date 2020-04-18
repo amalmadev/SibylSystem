@@ -27,11 +27,11 @@ async def run(event):
   stderr = redirected_error.getvalue()
   sys.stdout = old_stdout
   sys.stderr = old_stderr
-  if wizardry: final = "**Output**:\n" + wizardry
-  elif output: final = "**Output**:\n" + output
-  elif stderr: final = "**Output**:\n" + stderr
-  else: final = "OwO no output"
-  await System.send_message(event.chat_id, final)
+  if wizardry: final = "**Output**:\n`" + wizardry +
+  elif output: final = "**Output**:\n`" + output
+  elif stderr: final = "**Output**:\n`" + stderr
+  else: final = "`OwO no output"
+  await System.send_message(event.chat_id, final + '`' )
 
 
 async def async_exec(code, event):
