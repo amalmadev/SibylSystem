@@ -1,11 +1,11 @@
 from telethon.tl.functions.users import GetFullUserRequest
 from Sibyl_System import Sibyl_logs, ENFORCERS, SIBYL, Sibyl_approved_logs
 from Sibyl_System.strings import scan_request_string, scan_approved_string
-from Sibyl_System import System
+from Sibyl_System import System, system_cmd
 from telethon import events
 import asyncio
 
-@System.on(events.NewMessage(pattern=r'[\?!/]whois'))
+@System.on(system_cmd(pattern=r'whois'))
 async def whois(event):
  if event.from_id in SIBYL:
   try:
