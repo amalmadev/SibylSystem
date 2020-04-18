@@ -20,7 +20,7 @@ async def run(event):
   redirected_output = sys.stdout = StringIO()
   redirected_error = sys.stderr = StringIO()
   try:
-    exec(code)
+    async_exec(code)
   except Exception:
     wizardry = traceback.format_exc()
   output = redirected_output.getvalue()
@@ -32,6 +32,15 @@ async def run(event):
   elif stderr: final = "**Output**:\n" + stderr
   else: final = "OwO no output"
   await System.send_message(event.chat_id, final)
+
+
+async def async_exec(code, event):
+    exec(
+        f'async def __async_exec(event): ' +
+        ''.join(f'\n {l}' for l in code.split('\n'))
+    )
+    return await locals()['__aexec'](event)
+
 
 __plugin_name__ = "exec"
 
