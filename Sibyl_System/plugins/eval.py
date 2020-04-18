@@ -8,14 +8,12 @@ import traceback
 
 #Thanks to stackoverflow for existing https://stackoverflow.com/questions/3906232/python-get-the-print-output-in-an-exec-statement
 
-stderr = 0
-output = 0
-wizardry = 0
 
 @System.on(system_cmd(pattern = r"sibyl (exec|execute|x|ex)"))
 async def run(event):
   code = event.text.split(" ", 2)
   if len(code) == 2: return
+  stderr, output, wizardry = None, None, None
   code = code[2]
   old_stdout = sys.stdout
   old_stderr = sys.stderr
