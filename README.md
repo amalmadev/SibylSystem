@@ -9,21 +9,21 @@
 
 ## Config
 Here stuff you need to put in config.py or Environment variables
-> API_ID_KEY
-> API_HASH_KEY
+` API_ID_KEY`
+` API_HASH_KEY`
 You can get both of these from my.telegram.org
-> STRING_SESSION
+`STRING_SESSION`
 You can get this by doing `python3 generatestringsession.py` on Linux and Mac
 If on windows just python will work
-> SIBYL
+` SIBYL `
 Users who approve gbans, manage blacklist etc.
-> ENFORCERS 
+` ENFORCERS `
 Users who send gban request
-> Sibyl_logs
+` Sibyl_logs
 ^ In this group all scan request come
-> Sibyl_approved_logs
+` Sibyl_approved_logs `
 ^ When approved it sends a message there
-> GBAN_MSG_LOGS
+` GBAN_MSG_LOGS `
 ^ Where to gban user, Set to None and it will send /gban in Sibyl_logs
 ------------
 
