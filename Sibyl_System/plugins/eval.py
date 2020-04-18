@@ -20,7 +20,7 @@ async def run(event):
   redirected_output = sys.stdout = StringIO()
   redirected_error = sys.stderr = StringIO()
   try:
-    async_exec(code)
+    async_exec(code, event)
   except Exception:
     wizardry = traceback.format_exc()
   output = redirected_output.getvalue()
