@@ -1,60 +1,13 @@
 import pymongo 
-from Sibyl_System import MONGO_CLIENT, System, SIBYL, ENFORCERS, Sibyl_logs
+from Sibyl_System import System, SIBYL, ENFORCERS, Sibyl_logs
 from telethon import events 
 import asyncio 
 import re 
-db = MONGO_CLIENT['Sibyl']['Main']
-#cant find better names
-upd = {} 
-owo = {}
+from Sibyl_System.plugins.Mongo_DB.message_blacklist import get_blacklist, update_blacklist
+from Sibyl_System.plugins.Mongo_DB.message_blacklist import get_wlc_blacklist, update_wlc_blacklist
 
-#Add new entry in blacklist
-def update_blacklist(word, add = False):
-     bl = db.find_one({'_id': 1})
-     current = bl['blacklisted']
-     if add:
-        if word in current: 
-             return False
-        current.append(word)
-     else:
-        if word in current:
-          current.remove(word)
-        else: 
-          return False
-     upd['blacklisted'] = current
-     owo['$set'] = upd
-     db.update_one(db.find_one({'_id': 1}), owo)
-     return True
-
-#Add new entry in welcome blacklist
-async def update_wlc_blacklist(word, add = False):
-     bl = db.find_one({'_id': 2})
-     current = bl['blacklisted_wlc']
-     if add:
-        if word in current: 
-             return False
-        current.append(word)
-     else:
-        if word in current:
-          current.remove(word)
-        else: 
-          return False
-     upd['blacklisted_wlc'] = current
-     owo['$set'] = upd
-     db.update_one(db.find_one({'_id': 2}), owo)
-     return True
-
-async def get_blacklist():
-     json = db.find_one({'_id': 1})
-     return json.get('blacklisted', []) 
-
-async def get_wlc_bl():
-	json = db.find_one({"_id": 2})
-	return json.get("blacklisted_wlc", [])
-
-@System.on(events.NewMessage(pattern=r'[\.\?!]addbl'))
+@System.on(system_cmd(pattern = r'addbl'))
 async def addbl(event):
-  if event.from_id in SIBYL:
      flag = re.match(".addbl -e (.*)", event.text, re.DOTALL)
      if flag:
         text = re.escape(flag.group(1))
@@ -69,9 +22,8 @@ async def addbl(event):
      else:
         await System.send_message(event.chat_id, f" {text} is already blacklisted") 
 
-@System.on(events.NewMessage(pattern=r'[\.\?!/]addwlcbl'))
+@System.on(system_cmd(pattern=r'addwlcbl'))
 async def wlcbl(event):
- if event.from_id in SIBYL:
      flag = re.match(".addbl -e (.*)", event.text, re.DOTALL)
      if flag:
         text = re.escape(flag.group(1))
@@ -86,9 +38,8 @@ async def wlcbl(event):
      else:
         await System.send_message(event.chat_id, f" {text} is already blacklisted")
 
-@System.on(events.NewMessage(pattern=r'[\.\?!]rmwlcbl'))
+@System.on(system_cmd(pattern=r'rmwlcbl'))
 async def rmwlcbl(event):
-  if event.from_id in SIBYL:
      try:
        text = event.text.split(" ", 1)[1]
      except:
@@ -100,9 +51,8 @@ async def rmwlcbl(event):
         await System.send_message(event.chat_id, f"{text} is not blacklisted") 
 
 
-@System.on(events.NewMessage(pattern=r'[\.\?!]rmbl'))
+@System.on(system_cmd(pattern=r'rmbl'))
 async def rmbl(event):
-  if event.from_id in SIBYL:
      try:
        text = event.text.split(" ", 1)[1]
      except:
@@ -115,9 +65,8 @@ async def rmbl(event):
 
 
 
-@System.on(events.NewMessage(pattern=r'[\.\?!]listbl'))
+@System.on(system_cmd(pattern=r'listbl'))
 async def listbl(event):
-   if event.from_id in SIBYL:
       list = await get_blacklist()
       msg = "Currently Blacklisted strings:\n"
       for x in list:
