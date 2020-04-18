@@ -16,6 +16,9 @@ async def gban(enforcer, target, reason, msg_id, approved_by):
    await System.send_message(logs, f"/fban [{target}](tg://user?id={target}) {reason} // By {enforcer} | #{msg_id}") 
    return True
 
+logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
+                    level=logging.WARNING)
+
 @System.on(events.NewMessage(pattern=r'[\.\?!/]scan'))
 async def scan(event):
     if event.from_id in ENFORCERS and event.reply:
