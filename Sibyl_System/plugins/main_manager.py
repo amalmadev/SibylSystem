@@ -5,6 +5,7 @@ from telethon import events
 import re
 import asyncio
 from Sibyl_System import session
+import logging 
 
 async def gban(enforcer, target, reason, msg_id, approved_by):
    if GBAN_MSG_LOGS:
