@@ -2,7 +2,7 @@ from telethon import events
 import asyncio
 import sys
 import re
-from SibylSystem import system_cmd
+from SibylSystem import system_cmd, System
 from io import StringIO
 import traceback
 
