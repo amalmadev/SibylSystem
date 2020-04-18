@@ -4,7 +4,7 @@ from telethon import events
 import asyncio 
 import re 
 from Sibyl_System.plugins.Mongo_DB.message_blacklist import get_blacklist, update_blacklist
-from Sibyl_System.plugins.Mongo_DB.message_blacklist import get_wlc_blacklist, update_wlc_blacklist
+from Sibyl_System.plugins.Mongo_DB.name_blacklist import get_wlc_blacklist, update_wlc_blacklist
 
 @System.on(system_cmd(pattern = r'addbl'))
 async def addbl(event):
