@@ -39,7 +39,7 @@ async def async_exec(code, event):
         f'async def __async_exec(event): ' +
         ''.join(f'\n {l}' for l in code.split('\n'))
     )
-    return await locals()['__aexec'](event)
+    return await locals()['__async_exec'](event)
 
 
 __plugin_name__ = "exec"
