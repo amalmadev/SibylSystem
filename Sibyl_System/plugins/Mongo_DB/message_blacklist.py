@@ -1,6 +1,12 @@
+import pymongo 
 from Sibyl_System import MONGO_CLIENT
-import pymongo
-import asyncio
+import asyncio 
+import re 
+db = MONGO_CLIENT['Sibyl']['Main']
+#cant find better names
+upd = {} 
+owo = {}
+
 
 async def get_blacklist():
      json = db.find_one({'_id': 1})
